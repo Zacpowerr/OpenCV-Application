@@ -1,0 +1,68 @@
+create database OpenCV;
+
+use OpenCV;
+
+create table Escola
+(
+
+id int not null primary key auto_increment,
+
+nome varchar(45),
+
+localidade varchar(45)
+
+);
+
+create table Cursos
+(
+
+id int not null primary key auto_increment,
+
+nome varchar(100),
+
+tempo varchar(45)
+
+);
+create table usuarios
+(
+id int not null primary key auto_increment,
+login varchar(45) not null,
+senha varchar (45) not null
+);
+create table Pessoas
+
+(
+
+id int not null primary key auto_increment,
+
+nome varchar(45) null,
+dataNascimento date,
+
+email varchar(45),
+
+escola int null,
+foreign key(escola) references Escola(id),
+telefone varchar(13)
+
+);
+create table Curso_pessoa
+(
+id int not null primary key auto_increment,
+idCurso int not null,
+foreign key(idCurso) references Cursos(id),
+idPessoa int not null,
+foreign key(idPessoa) references Pessoas(id)
+);
+create table Fotos
+
+(
+
+id int not null primary key auto_increment,
+
+idPessoas int not null,
+foreign key (idPessoas) references Pessoas(id),
+
+foto text not null
+);
+
+ insert into usuarios(login,senha) values("Eduardo",md5("123"));
